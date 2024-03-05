@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse_lazy, reverse
 
 
 class Topic(models.Model):
@@ -11,6 +12,9 @@ class Topic(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("get-topic-info", kwargs={"pk": self.pk})
 
 
 class Redactor(AbstractUser):
