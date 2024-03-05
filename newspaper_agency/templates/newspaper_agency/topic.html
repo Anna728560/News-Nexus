@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block sidebar %}
+  {% include "includes/sidebar.html" %}
+{% endblock %} 
+  
+{% block content %}
+  {% include "newspaper_agency/newspaper_list.html" %}
+{% endblock %}
