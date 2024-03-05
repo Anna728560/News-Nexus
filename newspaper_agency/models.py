@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Topic(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True, db_index=True)
 
     class Meta:
         ordering = ("name",)
@@ -29,6 +29,7 @@ class Newspaper(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
     published_date = models.DateTimeField(auto_now_add=True)
+    photo = models.ImageField(upload_to="photos/%Y/%m/%d", blank=True)
     topic = models.ForeignKey(
         Topic,
         on_delete=models.CASCADE,
