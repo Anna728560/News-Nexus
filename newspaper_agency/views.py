@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, View
 
 from .models import Newspaper, Topic
@@ -55,3 +55,6 @@ class CreateNewspaperView(LoginRequiredMixin, View):
             return HttpResponseRedirect(reverse("newspaper-agency:newspaper-detail", kwargs={"pk": newspaper.pk}))
         return render(request, "newspaper_agency/create_newspaper.html", {"form": form})
 
+    # model = Newspaper
+    # fields = "__all__"
+    # success_url = reverse_lazy("newspaper-agency:newspaper-detail")
