@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import Newspaper, Topic
 from newspaper_agency.forms import NewspaperForm
@@ -27,22 +27,15 @@ class GetNewspapersByTopic(ListView):
     model = Newspaper
     template_name = "newspaper_agency/topic.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "Home page"
-        return context
-
     def get_queryset(self):
         return Newspaper.objects.filter(topic_id=self.kwargs["pk"])
 
 
-def newspaper_detail(request, pk):
-    """View function for the newspaper detail page with commentaries."""
-    newspaper = get_object_or_404(Newspaper, id=pk)
-    context = {
-        "newspaper": newspaper
-    }
-    return render(request, "newspaper_agency/newspaper_detail.html", context=context)
+class NewspaperDetailView(DetailView):
+    """View class for the newspaper detail page with commentaries."""
+    model = Newspaper
+    template_name = "newspaper_agency/newspaper_detail.html"
+    context_object_name = "newspaper"
 
 
 def crete_newspaper(request):
