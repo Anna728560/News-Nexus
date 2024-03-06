@@ -12,37 +12,28 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url "newspaper-agency:newspaper-home" %}">Home Page</a>
         </li>
-        {% if request.user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url "newspaper-agency:create-newspaper" %}">Add newspaper</a>
-          </li>
-
-        {% endif %}
       </ul>
 
       <ul class="navbar-nav ms-auto">
         {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url "newspaper-agency:create-newspaper" %}">Add newspaper</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ user.get_absolute_url }}">User: {{ user.get_username }}</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Logout</a>
           </li>
-        {% else %} 
+        {% else %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a>
-          </li>  
+            <a class="nav-link active" aria-current="page" href="{% url 'newspaper-agency:register' %}">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'newspaper-agency:login' %}">Login</a>
+          </li>
         {% endif %}
       </ul>
     </div>
   </div>
 </nav>
-
-
-
-{#{% if user.is_authenticated %}#}
-{#  <li class="list-group-item">User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>#}
-{#  <li class="list-group-item"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>#}
-{#{% else %}#}
-{#  <li class="list-group-item"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>#}
-{#{% endif %}#}

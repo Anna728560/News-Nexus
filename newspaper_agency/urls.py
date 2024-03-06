@@ -4,10 +4,15 @@ from .views import (
     HomePageView,
     GetNewspapersByTopic,
     NewspaperDetailView,
-    CreateNewspaperView
+    CreateNewspaperView,
+    register,
+    login,
 )
 
 urlpatterns = [
+    path("register/", register, name="register"),
+    path("login/", login, name="login"),
+    # path("logout/", register, name="register"),
     path("", HomePageView.as_view(), name="newspaper-home"),
     path("topic/<int:pk>/", GetNewspapersByTopic.as_view(), name="get-topic-info"),
     path("newspaper/<int:pk>/", NewspaperDetailView.as_view(), name="newspaper-detail"),
