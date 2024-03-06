@@ -1,7 +1,10 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 
 from .models import Newspaper, Topic
+from newspaper_agency.forms import NewspaperForm
 
 
 @login_required
@@ -38,4 +41,18 @@ def newspaper_detail(request, pk):
 
 
 def crete_newspaper(request):
-    return render(request, "newspaper_agency/create_newspaper.html")
+    if request.method == "POST":
+        form = NewspaperForm(request.POST)
+        if form.is_valid():
+            newspaper = form.save()
+            return HttpResponseRedirect(
+                reverse(
+                    "newspaper-agency:newspaper-detail",
+                    kwargs={
+                        "pk": newspaper.pk
+                    }
+                )
+            )
+    else:
+        form = NewspaperForm()
+    return render(request, "newspaper_agency/create_newspaper.html", context={"form": form})
