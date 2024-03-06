@@ -35,3 +35,7 @@ def newspaper_detail(request, pk):
         "newspaper": newspaper
     }
     return render(request, "newspaper_agency/newspaper_detail.html", context=context)
+
+
+def crete_newspaper(request):
+    return render(request, "newspaper_agency/create_newspaper.html")
