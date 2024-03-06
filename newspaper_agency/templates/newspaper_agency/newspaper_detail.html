@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+<h1>Newspaper detail</h1>
+
+{% block sidebar %}
+  {% include "includes/sidebar.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="card mb-3">
+  <div class="card-header">
+    Topic: {{ newspaper.topic }}
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-3">
+        {% if newspaper.photo %}
+          <img src="{{ newspaper.photo.url }}" alt="" width="300" class="mr-3">
+        {% else %}
+          <img src="https://www.theforage.com/blog/wp-content/uploads/2022/12/how-many-work-hours-in-a-year.jpg"
+               alt="" width="300" class="mr-3">
+        {% endif %}
+      </div>
+      <div class="col-md-9" style="padding-left: 45px">
+        <h5 class="card-title">{{ newspaper.title }}</h5>
+        <p class="card-text">{{ newspaper.content }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-body-secondary">
+    <i>Posted by {{ newspaper.publishers.name }} {{ newspaper.published_date }}</i>
+  </div>
+</div>
+{% endblock %}

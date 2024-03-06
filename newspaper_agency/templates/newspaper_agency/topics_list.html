@@ -1,6 +1,6 @@
 <div class="list-group">
   {% for topic in topics %}
-    <a href="{% url "get-topic-info" %}" class="list-group-item list-group-item-action">
+    <a href="{% url "newspaper-agency:get-topic-info"  pk=topic.pk %}" class="list-group-item list-group-item-action">
       {{ topic.name }}
     </a>
   {% endfor %}
