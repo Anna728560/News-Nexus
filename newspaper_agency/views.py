@@ -53,3 +53,11 @@ class CreateNewspaperView(LoginRequiredMixin, CreateView):
             "newspaper-agency:newspaper-detail",
             kwargs={"pk": self.object.pk}
         )
+
+
+def register(request):
+    return render(request, "newspaper_agency/register.html")
+
+
+def login(request):
+    return render(request, "newspaper_agency/login.html")
