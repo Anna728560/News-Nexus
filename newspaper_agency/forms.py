@@ -32,3 +32,16 @@ class NewspaperForm(forms.ModelForm):
             "content": forms.Textarea(attrs={"class": "form-control", "rows": 4}),
             "topic": forms.Select(attrs={"class": "form-control"}),
         }
+
+
+class TopicSearchForm(forms.Form):
+    title = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search by topic"
+            }
+        )
+    )

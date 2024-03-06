@@ -1,11 +1,11 @@
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, View
 
-from .forms import RedactorCreationForm, RedactorLoginForm
-from .models import Newspaper
+from .forms import RedactorCreationForm, RedactorLoginForm, TopicSearchForm
+from .models import Newspaper, Topic
 
 
 class HomePageView(ListView):
@@ -17,10 +17,17 @@ class HomePageView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Home page"
+        context["search_form"] = TopicSearchForm()
+        context["topics"] = Topic.objects.all()  # добавляем список всех тем
         return context
 
     def get_queryset(self):
-        return Newspaper.objects.all().select_related("topic")
+        queryset = super().get_queryset()
+        topic_id = self.request.GET.get('topic')  # получаем выбранный ID темы из параметров запроса
+        if topic_id:
+            topic = get_object_or_404(Topic, pk=topic_id)
+            queryset = queryset.filter(topic=topic)
+        return queryset.select_related("topic")
 
 
 class GetNewspapersByTopic(ListView):
