@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView, DetailView, View
+from django.views.generic import ListView, DetailView, View, CreateView
 
 from .models import Newspaper, Topic
 from newspaper_agency.forms import NewspaperForm
@@ -40,21 +40,14 @@ class NewspaperDetailView(DetailView):
     context_object_name = "newspaper"
 
 
-class CreateNewspaperView(LoginRequiredMixin, View):
+class CreateNewspaperView(LoginRequiredMixin, CreateView):
     """View class for the page with creation form for the newspaper."""
-    @staticmethod
-    def get(request):
-        form = NewspaperForm()
-        return render(request, "newspaper_agency/create_newspaper.html", {"form": form})
+    model = Newspaper
+    fields = "__all__"
+    template_name = "newspaper_agency/create_newspaper.html"
 
-    @staticmethod
-    def post(request):
-        form = NewspaperForm(request.POST)
-        if form.is_valid():
-            newspaper = form.save()
-            return HttpResponseRedirect(reverse("newspaper-agency:newspaper-detail", kwargs={"pk": newspaper.pk}))
-        return render(request, "newspaper_agency/create_newspaper.html", {"form": form})
-
-    # model = Newspaper
-    # fields = "__all__"
-    # success_url = reverse_lazy("newspaper-agency:newspaper-detail")
+    def get_success_url(self):
+        return reverse_lazy(
+            "newspaper-agency:newspaper-detail",
+            kwargs={"pk": self.object.pk}
+        )
