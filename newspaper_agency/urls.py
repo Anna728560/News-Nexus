@@ -5,18 +5,19 @@ from .views import (
     GetNewspapersByTopic,
     NewspaperDetailView,
     CreateNewspaperView,
-    register,
-    login,
+    UserRegisterView,
+    UserLoginView,
+    UserLogoutView,
 )
 
 urlpatterns = [
-    path("register/", register, name="register"),
-    path("login/", login, name="login"),
-    # path("logout/", register, name="register"),
+    path("register/", UserRegisterView.as_view(), name="register"),
+    path("login/", UserLoginView.as_view(), name="login"),
+    path("logout/", UserLogoutView.as_view(), name="logout"),
     path("", HomePageView.as_view(), name="newspaper-home"),
     path("topic/<int:pk>/", GetNewspapersByTopic.as_view(), name="get-topic-info"),
     path("newspaper/<int:pk>/", NewspaperDetailView.as_view(), name="newspaper-detail"),
     path("newspaper/create-newspaper/", CreateNewspaperView.as_view(), name="create-newspaper"),
 ]
 
-app_name = "newspaper-agency"
+app_name = "newspaper_agency"

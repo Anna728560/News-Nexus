@@ -2,7 +2,7 @@
 {% load crispy_forms_filters %}
 
 {% block title %}
-  Login Form
+  Logged out
 {% endblock %}
 
 {% block sidebar %}
@@ -10,13 +10,6 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Login</h1>
-  <br>
-  <form method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <br>
-    <button type="submit" class="btn btn-success btn-block">Submit</button>
-  </form>
+  <p>Logged out!</p>
+  <a href="{% url 'login'%}">Click here to login again.</a>
 {% endblock %}
-
