@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
@@ -40,7 +40,7 @@ class NewspaperDetailView(DetailView):
     context_object_name = "newspaper"
 
 
-class CreateNewspaperView(View):
+class CreateNewspaperView(LoginRequiredMixin, View):
     """View class for the page with creation form for the newspaper."""
     @staticmethod
     def get(request):
