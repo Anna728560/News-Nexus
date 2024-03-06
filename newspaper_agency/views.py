@@ -1,21 +1,17 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from django.views.generic import ListView
 
 from .models import Newspaper, Topic
 from newspaper_agency.forms import NewspaperForm
 
 
-@login_required
-def index(request):
-    """View function for the home page of the site."""
-
-    newspaper_list = Newspaper.objects.all().select_related("topic")
-    context = {
-        'newspaper_list': newspaper_list,
-    }
-    return render(request, "newspaper_agency/index.html", context=context)
+class HomePageView(ListView):
+    """View class for the home page of the site."""
+    model = Newspaper
+    template_name = "newspaper_agency/newspaper_home.html"
 
 
 def get_topic(request, pk):
@@ -41,6 +37,7 @@ def newspaper_detail(request, pk):
 
 
 def crete_newspaper(request):
+    """View function for the page with creation form for the newspaper."""
     if request.method == "POST":
         form = NewspaperForm(request.POST)
         if form.is_valid():
