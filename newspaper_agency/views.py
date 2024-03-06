@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, View
 
 from .models import Newspaper, Topic
 from newspaper_agency.forms import NewspaperForm
@@ -38,20 +38,17 @@ class NewspaperDetailView(DetailView):
     context_object_name = "newspaper"
 
 
-def crete_newspaper(request):
-    """View function for the page with creation form for the newspaper."""
-    if request.method == "POST":
+class CreateNewspaperView(View):
+    """View class for the page with creation form for the newspaper."""
+    @staticmethod
+    def get(request):
+        form = NewspaperForm()
+        return render(request, "newspaper_agency/create_newspaper.html", {"form": form})
+
+    @staticmethod
+    def post(request):
         form = NewspaperForm(request.POST)
         if form.is_valid():
             newspaper = form.save()
-            return HttpResponseRedirect(
-                reverse(
-                    "newspaper-agency:newspaper-detail",
-                    kwargs={
-                        "pk": newspaper.pk
-                    }
-                )
-            )
-    else:
-        form = NewspaperForm()
-    return render(request, "newspaper_agency/create_newspaper.html", context={"form": form})
+            return HttpResponseRedirect(reverse("newspaper-agency:newspaper-detail", kwargs={"pk": newspaper.pk}))
+        return render(request, "newspaper_agency/create_newspaper.html", {"form": form})
