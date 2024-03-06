@@ -13,18 +13,27 @@ class HomePageView(ListView):
     model = Newspaper
     template_name = "newspaper_agency/newspaper_home.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Home page"
+        return context
 
-def get_topic(request, pk):
-    """View function for the category page with newspapers with this topic."""
-    topic = Topic.objects.get(id=pk)
-    newspaper_list = Newspaper.objects.filter(topic_id=pk)
+    def get_queryset(self):
+        return Newspaper.objects.all()
 
-    context = {
-        "newspaper_list": newspaper_list,
-        "topic": topic,
-    }
 
-    return render(request, "newspaper_agency/topic.html", context=context)
+class GetNewspapersByTopic(ListView):
+    """View class for the category page with newspapers with this topic."""
+    model = Newspaper
+    template_name = "newspaper_agency/topic.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Home page"
+        return context
+
+    def get_queryset(self):
+        return Newspaper.objects.filter(topic_id=self.kwargs["pk"])
 
 
 def newspaper_detail(request, pk):
