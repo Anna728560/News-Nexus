@@ -1,4 +1,5 @@
 from django import template
+from django.db.models import Count
 
 from newspaper_agency.models import Topic
 
@@ -12,5 +13,5 @@ def get_all_topics():
 
 @register.inclusion_tag('newspaper_agency/topics_list.html')
 def show_topics():
-    topics = Topic.objects.all()
+    topics = Topic.objects.annotate(cnt=Count('newspapers'))
     return {'topics': topics}
