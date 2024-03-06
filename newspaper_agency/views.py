@@ -19,7 +19,7 @@ class HomePageView(ListView):
         return context
 
     def get_queryset(self):
-        return Newspaper.objects.all()
+        return Newspaper.objects.all().select_related("topic")
 
 
 class GetNewspapersByTopic(ListView):
@@ -28,7 +28,9 @@ class GetNewspapersByTopic(ListView):
     template_name = "newspaper_agency/topic.html"
 
     def get_queryset(self):
-        return Newspaper.objects.filter(topic_id=self.kwargs["pk"])
+        return Newspaper.objects.filter(
+            topic_id=self.kwargs["pk"]
+        ).select_related("topic")
 
 
 class NewspaperDetailView(DetailView):
@@ -52,3 +54,4 @@ class CreateNewspaperView(View):
             newspaper = form.save()
             return HttpResponseRedirect(reverse("newspaper-agency:newspaper-detail", kwargs={"pk": newspaper.pk}))
         return render(request, "newspaper_agency/create_newspaper.html", {"form": form})
+
