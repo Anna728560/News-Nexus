@@ -1,13 +1,13 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
 
 from newspaper_agency.models import (
     Redactor,
-    Newspaper, Topic
+    Newspaper,
 )
 
 
-class RedactorForm(UserCreationForm):
+class RedactorCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = Redactor
@@ -16,6 +16,11 @@ class RedactorForm(UserCreationForm):
             "last_name",
             "years_of_experience",
         )
+
+
+class RedactorLoginForm(AuthenticationForm):
+    username = forms.CharField()
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
 
 class NewspaperForm(forms.ModelForm):

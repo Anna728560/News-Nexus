@@ -2,7 +2,7 @@
 {% load crispy_forms_filters %}
 
 {% block title %}
-{#  Registration :: {{ block.super }}#}
+  Registration Form
 {% endblock %}
 
 {% block sidebar %}
@@ -10,8 +10,13 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Register</h1>
+  <h1>Registration</h1>
   <br>
+  <form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-success btn-block">Submit</button>
+  </form>
 
 
 
