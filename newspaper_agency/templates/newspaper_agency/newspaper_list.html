@@ -21,7 +21,7 @@
             <div class="col-md-9" style="padding-left: 45px">
               <h5 class="card-title">{{ newspaper.title }}</h5>
               <p class="card-text">{{ newspaper.content|safe|linebreaks|truncatewords:70 }}</p>
-              <a href="#" class="btn btn-primary">Click here to read more</a>
+              <a href="{% url "newspaper-agency:newspaper-detail"  pk=newspaper.pk %}" class="btn btn-primary">Click here to read more</a>
             </div>
           </div>
         </div>
