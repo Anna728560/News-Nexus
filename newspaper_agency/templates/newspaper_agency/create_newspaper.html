@@ -11,5 +11,16 @@
 
 {% block content %}
   <h1>Add a newspaper</h1>
+  <br>
+
+{#  <div class="col-sm-9">#}
+    <form action="{% url "newspaper-agency:create-newspaper" %}" method="post">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {{ form|crispy }}
+      <br>
+      <button type="submit" class="btn btn-primary btn-block">Add newspaper</button>
+    </form>
+{#  </div>#}
 
 {% endblock %}
