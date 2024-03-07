@@ -1,3 +1,10 @@
 body {
     background-color: whitesmoke;
 }
+
+
+
+.navbar-nav .nav-link.active {
+    color: black;
+}
+
