@@ -1,4 +1,5 @@
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -12,7 +13,7 @@ from .forms import (
     CreateCommentaryForm,
     NewspaperForm,
 )
-from .models import Newspaper, Topic
+from .models import Newspaper, Topic, Redactor
 
 
 class HomePageView(ListView):
@@ -128,3 +129,13 @@ class CreateCommentView(LoginRequiredMixin, View):
             return redirect("newspaper-agency:newspaper-detail", pk=pk)
         else:
             return redirect("newspaper-agency:newspaper-detail", pk=pk)
+
+
+@login_required
+def add_of_remove_editor_to_authors(request, pk):
+    newspaper = get_object_or_404(Newspaper, pk=pk)
+    if request.user in newspaper.publishers.all():
+        newspaper.publishers.remove(request.user)
+    else:
+        newspaper.publishers.add(request.user)
+    return redirect("newspaper-agency:newspaper-detail", pk=newspaper.pk)
