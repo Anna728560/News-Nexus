@@ -48,11 +48,11 @@
       </div>
     </div>
     <div class="card-footer text-muted">
-      <i>Posted by
+      <i><strong>Posted by</strong>
         {% for publisher in newspaper.publishers.all %}
           {{ publisher.username }},
         {% endfor %}
-        {{ newspaper.published_date }}
+        <strong>{{ newspaper.published_date }}</strong>
       </i>
     </div>
   </div>
