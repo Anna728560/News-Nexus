@@ -17,10 +17,13 @@
   {% block navbar %}
     {% include "includes/navbar.html" %}
   {% endblock %}
-
+  
+  <div style="text-align: center; background-color: lightgray; padding: 15px" >
+    <h5><i>Forging Connections, Empowering Minds: News-Nexus - Your Gateway to the IT Universe!</i></h5>
+  </div>
+  <br>
   <div class="container-fluid mt-3">
     <div class="row">
-
       <div class="col-md-2">
         {% block sidebar %}SIDEBAR{% endblock %}
       </div> 
@@ -31,7 +34,6 @@
           {% include "includes/pagination.html" %}
         {% endblock %}
       </div>
-
     </div>
   </div>
 
@@ -41,5 +43,8 @@
   <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
 
 </body>
-
+<br>
+<footer style="text-align: center; padding: 15px" class="bg-success">
+  @NewsNexus 2024
+</footer>
 </html>
