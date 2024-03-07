@@ -18,12 +18,12 @@ class HomePageView(ListView):
         context = super().get_context_data(**kwargs)
         context["title"] = "Home page"
         context["search_form"] = TopicSearchForm()
-        context["topics"] = Topic.objects.all()  # добавляем список всех тем
+        context["topics"] = Topic.objects.all()
         return context
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        topic_id = self.request.GET.get('topic')  # получаем выбранный ID темы из параметров запроса
+        topic_id = self.request.GET.get('topic')
         if topic_id:
             topic = get_object_or_404(Topic, pk=topic_id)
             queryset = queryset.filter(topic=topic)

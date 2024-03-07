@@ -35,14 +35,14 @@ class CarAdmin(admin.ModelAdmin):
 
 @admin.register(Newspaper)
 class NewspaperAdmin(admin.ModelAdmin):
-    list_display = ("title", "topic", "published_date", "get_photo", )
+    list_display = ("title", "topic", "published_date", "get_photo")
     list_filter = ("title", "published_date",)
     fields = ("title", "topic", "content", "published_date", "photo", "get_photo",)
     readonly_fields = ("published_date", "get_photo",)
 
     def get_photo(self, obj):
         if obj.photo:
-            return mark_safe(f"<img src='{obj.photo.url}' width='75")
+            return mark_safe(f"<img src='{obj.photo.url}' width='75'>")
         else:
             return "-"
 
