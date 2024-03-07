@@ -53,4 +53,3 @@ class CreateCommentaryForm(forms.ModelForm):
         model = Commentary
         fields = ("content",)
         labels = {"content": "Add comment:"}
-
