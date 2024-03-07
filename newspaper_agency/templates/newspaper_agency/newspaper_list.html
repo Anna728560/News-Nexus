@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-9" style="padding-left: 45px">
               <h5 class="card-title">{{ newspaper.title }}</h5>
-              <p class="card-text">{{ newspaper.content|safe|linebreaks|truncatewords:70 }}</p>
+              <p class="card-text">{{ newspaper.content|safe|linebreaks|truncatewords:60 }}</p>
               <a href="{% url "newspaper-agency:newspaper-detail"  pk=newspaper.pk %}" class="btn btn-success">Click here to read more</a>
             </div>
           </div>

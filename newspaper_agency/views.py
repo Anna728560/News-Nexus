@@ -12,7 +12,7 @@ class HomePageView(ListView):
     """View class for the home page of the site."""
     model = Newspaper
     template_name = "newspaper_agency/newspaper_home.html"
-    paginate_by = 5
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -34,7 +34,7 @@ class GetNewspapersByTopic(ListView):
     """View class for the category page with newspapers with this topic."""
     model = Newspaper
     template_name = "newspaper_agency/topic.html"
-    paginate_by = 5
+    paginate_by = 10
 
     def get_queryset(self):
         return Newspaper.objects.filter(
