@@ -46,3 +46,25 @@ class Newspaper(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+
+class Commentary(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="commentaries"
+    )
+    newspaper = models.ForeignKey(
+        Newspaper,
+        on_delete=models.CASCADE,
+        related_name="commentaries"
+    )
+    created_time = models.DateTimeField(auto_now_add=True)
+    content = models.TextField()
+
+    class Meta:
+        ordering = ("-created_time",)
+        verbose_name_plural = "Commentaries"
+
+    def __str__(self):
+        return f"Comment: {self.content}"
