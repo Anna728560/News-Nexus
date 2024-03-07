@@ -18,5 +18,6 @@
       {{ form|crispy }}
       <br>
       <button type="submit" class="btn btn-success btn-block">Add newspaper</button>
+      <a class="btn btn-secondary" href="{% url 'newspaper-agency:newspaper-home' %}" style="margin-left: 10px">Cancel</a>
     </form>
 {% endblock %}
