@@ -28,7 +28,12 @@
 
         </div>
         <div class="card-footer text-body-secondary">
-          <i>Posted by {{ newspaper.publishers.name }} {{ newspaper.published_date }}</i>
+          <i>Posted by
+            {% for publisher in newspaper.publishers.all %}
+              {{ publisher.username }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+            {{ newspaper.published_date }}
+          </i>
           <p>
             <strong>
               {{ newspaper.commentaries.count }}

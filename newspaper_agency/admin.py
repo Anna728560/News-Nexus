@@ -35,7 +35,7 @@ class CarAdmin(admin.ModelAdmin):
 
 @admin.register(Newspaper)
 class NewspaperAdmin(admin.ModelAdmin):
-    list_display = ("title", "topic", "published_date", "get_photo")
+    list_display = ("title", "topic", "published_date", "publisher_name", "get_photo")
     list_filter = (
         "title",
         "published_date",
@@ -45,11 +45,13 @@ class NewspaperAdmin(admin.ModelAdmin):
         "topic",
         "content",
         "published_date",
+        "publisher_name",
         "photo",
         "get_photo",
     )
     readonly_fields = (
         "published_date",
+        "publisher_name",
         "get_photo",
     )
 
@@ -60,6 +62,11 @@ class NewspaperAdmin(admin.ModelAdmin):
             return "-"
 
     get_photo.short_description = "Photo"
+
+    def publisher_name(self, obj):
+        return obj.publishers.first().username if obj.publishers.exists() else "-"
+
+    publisher_name.short_description = "Publisher Name"
 
 
 @admin.register(Commentary)
