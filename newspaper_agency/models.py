@@ -18,7 +18,11 @@ class Redactor(AbstractUser):
     years_of_experience = models.IntegerField(default=0)
 
     class Meta:
-        ordering = ("username", "first_name", "last_name",)
+        ordering = (
+            "username",
+            "first_name",
+            "last_name",
+        )
         verbose_name = "redactor"
         verbose_name_plural = "redactors"
 
@@ -32,13 +36,10 @@ class Newspaper(models.Model):
     published_date = models.DateTimeField(auto_now_add=True)
     photo = models.ImageField(upload_to="photos/%Y/%m/%d", blank=True)
     topic = models.ForeignKey(
-        Topic,
-        on_delete=models.CASCADE,
-        related_name="newspapers"
+        Topic, on_delete=models.CASCADE, related_name="newspapers"
     )
     publishers = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
-        related_name="newspapers"
+        settings.AUTH_USER_MODEL, related_name="newspapers"
     )
 
     class Meta:
@@ -50,14 +51,10 @@ class Newspaper(models.Model):
 
 class Commentary(models.Model):
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="commentaries"
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="commentaries"
     )
     newspaper = models.ForeignKey(
-        Newspaper,
-        on_delete=models.CASCADE,
-        related_name="commentaries"
+        Newspaper, on_delete=models.CASCADE, related_name="commentaries"
     )
     created_time = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
