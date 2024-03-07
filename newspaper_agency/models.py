@@ -13,9 +13,6 @@ class Topic(models.Model):
     def __str__(self) -> str:
         return self.name
 
-    def get_absolute_url(self):
-        return reverse("get-topic-info", kwargs={"pk": self.pk})
-
 
 class Redactor(AbstractUser):
     years_of_experience = models.IntegerField(default=0)
