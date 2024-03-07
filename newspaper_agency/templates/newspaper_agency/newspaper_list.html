@@ -29,6 +29,16 @@
         </div>
         <div class="card-footer text-body-secondary">
           <i>Posted by {{ newspaper.publishers.name }} {{ newspaper.published_date }}</i>
+          <p>
+            <strong>
+              {{ newspaper.commentaries.count }}
+              {% if newspaper.commentaries.count == 1 %}
+                comment
+              {% else %}
+                comments
+              {% endif %}
+            </strong>
+          </p>
         </div>
       </div>
     {% endfor %}
