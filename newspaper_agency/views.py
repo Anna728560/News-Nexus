@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, View
 
-from .forms import RedactorCreationForm, RedactorLoginForm, TopicSearchForm, CreateCommentaryForm
+from .forms import RedactorCreationForm, RedactorLoginForm, TopicSearchForm, CreateCommentaryForm, NewspaperForm
 from .models import Newspaper, Topic
 
 
@@ -53,7 +53,7 @@ class NewspaperDetailView(DetailView):
 class CreateNewspaperView(LoginRequiredMixin, CreateView):
     """View class for the page with creation form for the newspaper."""
     model = Newspaper
-    fields = "__all__"
+    form_class = NewspaperForm
     template_name = "newspaper_agency/create_newspaper.html"
 
     def get_success_url(self):

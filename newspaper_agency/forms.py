@@ -27,11 +27,12 @@ class RedactorLoginForm(AuthenticationForm):
 class NewspaperForm(forms.ModelForm):
     class Meta:
         model = Newspaper
-        fields = ("title", "content", "topic")
+        fields = ("title", "content", "topic", "photo")
         widgets = {
             "title": forms.TextInput(attrs={"class": "form-control"}),
             "content": forms.Textarea(attrs={"class": "form-control", "rows": 4}),
             "topic": forms.Select(attrs={"class": "form-control"}),
+            "photo": forms.ClearableFileInput(attrs={"class": "form-control-file"})
         }
 
 
