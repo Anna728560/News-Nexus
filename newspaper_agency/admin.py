@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.safestring import mark_safe
 
-from newspaper_agency.models import Topic, Redactor, Newspaper
+from newspaper_agency.models import Topic, Redactor, Newspaper, Commentary
 
 
 @admin.register(Redactor)
@@ -47,3 +47,8 @@ class NewspaperAdmin(admin.ModelAdmin):
             return "-"
 
     get_photo.short_description = "Photo"
+
+
+@admin.register(Commentary)
+class CommentaryAdmin(admin.ModelAdmin):
+    list_display = ("user", "content", "created_time")
