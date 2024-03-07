@@ -7,21 +7,25 @@
           Topic: {{ newspaper.topic }}
         </div>
         <div class="card-body">
+
           <div class="row">
             <div class="col-md-3">
               {% if newspaper.photo %}
-                <img src="{{ newspaper.photo.url }}" alt="" width="300" class="float-left mr-3">
+                <img src="{{ newspaper.photo.url }}" alt="" width="300" class="img-fluid float-md-start me-md-3 mb-3">
               {% else %}
                 <img src="https://www.theforage.com/blog/wp-content/uploads/2022/12/how-many-work-hours-in-a-year.jpg"
-                     alt="" width="300" class="float-left mr-3">
+                     alt="" width="300" class="img-fluid float-md-start me-md-3 mb-3">
               {% endif %}
             </div>
+
             <div class="col-md-9" style="padding-left: 45px">
-              <h5 class="card-title">{{ newspaper.title }}</h5>
-              <p class="card-text">{{ newspaper.content|safe|linebreaks|truncatewords:60 }}</p>
-              <a href="{% url "newspaper-agency:newspaper-detail"  pk=newspaper.pk %}" class="btn btn-success">Click here to read more</a>
+              <h5>{{ newspaper.title }}</h5>
+              <p class="card-text ">{{ newspaper.content|safe|linebreaks|truncatewords:60 }}</p>
+              <a href="{% url "newspaper-agency:newspaper-detail"  pk=newspaper.pk %}" class="btn btn-success">Click
+                here to read more</a>
             </div>
           </div>
+
         </div>
         <div class="card-footer text-body-secondary">
           <i>Posted by {{ newspaper.publishers.name }} {{ newspaper.published_date }}</i>

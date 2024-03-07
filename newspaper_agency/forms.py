@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
 
+
 from newspaper_agency.models import (
     Redactor,
     Newspaper, Commentary,
