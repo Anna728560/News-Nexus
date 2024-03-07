@@ -47,8 +47,8 @@
       </form>
     </div>
   {% else %}
-    <br>
-    <p><a href="{% url 'newspaper-agency:login' %}" class="btn btn-warning">Login to add comment</a></p>
+
+    <p><a href="{% url 'newspaper-agency:login' %}" class="btn btn-success" style="margin-top: 10px">Login to add comment</a></p>
   {% endif %}
   <br>
   <p>
@@ -64,7 +64,7 @@
   {% for comment in newspaper.commentaries.all %}
     <div class="card">
       <div class="card-body">
-        <small class="text-muted">{{ comment.created_time }}</small>
+        <small class="text-muted"><strong>{{ comment.user.username }}</strong> {{ comment.created_time }}</small>
         <hr>
         <p>{{ comment.content }}</p>
       </div>
