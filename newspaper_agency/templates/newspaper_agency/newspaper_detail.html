@@ -32,6 +32,8 @@
       <i>Posted by {{ newspaper.publishers.name }} {{ newspaper.published_date }}</i>
     </div>
   </div>
+  <br>
+  <a class="btn btn-secondary" href="{% url 'newspaper-agency:get-topic-info' pk=newspaper.topic.pk%}">Return back</a>
   {% if user.is_authenticated %}
     <div>
       <form action="{% url 'newspaper-agency:create-comment' newspaper.pk %}" method="post" novalidate>
