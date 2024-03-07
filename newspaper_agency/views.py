@@ -5,12 +5,19 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, View
 
-from .forms import RedactorCreationForm, RedactorLoginForm, TopicSearchForm, CreateCommentaryForm, NewspaperForm
+from .forms import (
+    RedactorCreationForm,
+    RedactorLoginForm,
+    TopicSearchForm,
+    CreateCommentaryForm,
+    NewspaperForm,
+)
 from .models import Newspaper, Topic
 
 
 class HomePageView(ListView):
     """View class for the home page of the site."""
+
     model = Newspaper
     template_name = "newspaper_agency/newspaper_home.html"
     paginate_by = 10
@@ -24,7 +31,7 @@ class HomePageView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        topic_id = self.request.GET.get('topic')
+        topic_id = self.request.GET.get("topic")
         if topic_id:
             topic = get_object_or_404(Topic, pk=topic_id)
             queryset = queryset.filter(topic=topic)
@@ -33,18 +40,20 @@ class HomePageView(ListView):
 
 class GetNewspapersByTopic(ListView):
     """View class for the category page with newspapers with this topic."""
+
     model = Newspaper
     template_name = "newspaper_agency/topic.html"
     paginate_by = 10
 
     def get_queryset(self):
-        return Newspaper.objects.filter(
-            topic_id=self.kwargs["pk"]
-        ).select_related("topic")
+        return Newspaper.objects.filter(topic_id=self.kwargs["pk"]).select_related(
+            "topic"
+        )
 
 
 class NewspaperDetailView(DetailView):
     """View class for the newspaper detail page with commentaries."""
+
     model = Newspaper
     template_name = "newspaper_agency/newspaper_detail.html"
     context_object_name = "newspaper"
@@ -52,14 +61,14 @@ class NewspaperDetailView(DetailView):
 
 class CreateNewspaperView(LoginRequiredMixin, CreateView):
     """View class for the page with creation form for the newspaper."""
+
     model = Newspaper
     form_class = NewspaperForm
     template_name = "newspaper_agency/create_newspaper.html"
 
     def get_success_url(self):
         return reverse_lazy(
-            "newspaper-agency:newspaper-detail",
-            kwargs={"pk": self.object.pk}
+            "newspaper-agency:newspaper-detail", kwargs={"pk": self.object.pk}
         )
 
 
@@ -86,8 +95,8 @@ class UserLoginView(View):
     def post(self, request):
         form = RedactorLoginForm(data=request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password")
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)

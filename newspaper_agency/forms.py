@@ -4,7 +4,8 @@ from django import forms
 
 from newspaper_agency.models import (
     Redactor,
-    Newspaper, Commentary,
+    Newspaper,
+    Commentary,
 )
 
 
@@ -21,7 +22,7 @@ class RedactorCreationForm(UserCreationForm):
 
 class RedactorLoginForm(AuthenticationForm):
     username = forms.CharField()
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password = forms.CharField(label="Password", widget=forms.PasswordInput)
 
 
 class NewspaperForm(forms.ModelForm):
@@ -32,7 +33,7 @@ class NewspaperForm(forms.ModelForm):
             "title": forms.TextInput(attrs={"class": "form-control"}),
             "content": forms.Textarea(attrs={"class": "form-control", "rows": 4}),
             "topic": forms.Select(attrs={"class": "form-control"}),
-            "photo": forms.ClearableFileInput(attrs={"class": "form-control-file"})
+            "photo": forms.ClearableFileInput(attrs={"class": "form-control-file"}),
         }
 
 
@@ -41,11 +42,7 @@ class TopicSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Search by topic"
-            }
-        )
+        widget=forms.TextInput(attrs={"placeholder": "Search by topic"}),
     )
 
 
