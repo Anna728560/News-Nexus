@@ -66,6 +66,10 @@ class CreateNewspaperView(LoginRequiredMixin, CreateView):
     form_class = NewspaperForm
     template_name = "newspaper_agency/create_newspaper.html"
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse_lazy(
             "newspaper-agency:newspaper-detail", kwargs={"pk": self.object.pk}
