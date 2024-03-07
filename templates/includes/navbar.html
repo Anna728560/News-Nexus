@@ -1,7 +1,11 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-success">
   <div class="container-fluid">
 
-    <a class="navbar-brand" href="{% url "newspaper-agency:newspaper-home" %}">News Nexus</a>
+    <a class="navbar-brand" 
+       href="{% url "newspaper-agency:newspaper-home" %}" 
+       style="color: white">
+      <strong><i>News Nexus</i></strong>
+    </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,19 +26,37 @@
       <ul class="navbar-nav ms-auto">
         {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ user.get_absolute_url }}">User: {{ user.get_username }}</a>
+            <a class="nav-link active" 
+               aria-current="page" 
+               href="{{ user.get_absolute_url }}"
+               style="color: white">
+              <strong>User: {{ user.get_username }}</strong>
+            </a>
           </li>
-          
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'newspaper-agency:logout' %}">Logout</a>
+            <a class="nav-link active" 
+               aria-current="page" 
+               href="{% url 'newspaper-agency:logout' %}" 
+               style="color: darkred">
+              <strong>Logout</strong>
+            </a>
           </li>
-          
         {% else %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'newspaper-agency:register' %}">Register</a>
+            <a class="nav-link active" 
+               aria-current="page" 
+               href="{% url 'newspaper-agency:register' %}"
+               style="color: white">
+              <strong>Register</strong>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'newspaper-agency:login' %}">Login</a>
+            <a class="nav-link active" 
+               aria-current="page" 
+               href="{% url 'newspaper-agency:login' %}" 
+               style="color: white">
+              <strong>Login</strong>
+            </a>
           </li>
         {% endif %}
       </ul>
