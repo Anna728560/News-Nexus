@@ -1,10 +1,11 @@
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, View
 
-from .forms import RedactorCreationForm, RedactorLoginForm, TopicSearchForm
+from .forms import RedactorCreationForm, RedactorLoginForm, TopicSearchForm, CreateCommentaryForm
 from .models import Newspaper, Topic
 
 
@@ -98,3 +99,19 @@ class UserLogoutView(View):
     def get(self, request):
         logout(request)
         return redirect("newspaper-agency:login")
+
+
+class CreateCommentView(LoginRequiredMixin, View):
+    def post(self, request: HttpRequest, pk: int) -> HttpResponse:
+        if not request.user.is_authenticated:
+            return redirect("newspaper-agency:login")
+        newspaper = get_object_or_404(Newspaper, pk=pk)
+        form = CreateCommentaryForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.newspaper = newspaper
+            comment.save()
+            return redirect("newspaper-agency:newspaper-detail", pk=pk)
+        else:
+            return redirect("newspaper-agency:newspaper-detail", pk=pk)
