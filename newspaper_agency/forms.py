@@ -3,7 +3,7 @@ from django import forms
 
 from newspaper_agency.models import (
     Redactor,
-    Newspaper,
+    Newspaper, Commentary,
 )
 
 
@@ -45,3 +45,11 @@ class TopicSearchForm(forms.Form):
             }
         )
     )
+
+
+class CreateCommentaryForm(forms.ModelForm):
+    class Meta:
+        model = Commentary
+        fields = ("content",)
+        labels = {"content": "Add comment:"}
+
