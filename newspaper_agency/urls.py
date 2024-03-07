@@ -9,6 +9,7 @@ from .views import (
     UserLoginView,
     UserLogoutView,
     CreateCommentView,
+    add_of_remove_editor_to_authors,
 )
 
 urlpatterns = [
@@ -24,6 +25,11 @@ urlpatterns = [
         name="create-newspaper",
     ),
     path("<int:pk>/create-comment", CreateCommentView.as_view(), name="create-comment"),
+    path(
+        "add-editor-to-authors/<int:pk>/",
+        add_of_remove_editor_to_authors,
+        name="add-or-remove-editor-to-authors",
+    ),
 ]
 
 app_name = "newspaper_agency"

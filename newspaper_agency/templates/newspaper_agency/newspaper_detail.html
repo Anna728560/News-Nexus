@@ -9,9 +9,28 @@
 
 {% block content %}
   <div class="card">
+
     <div class="card-header">
-      Topic: {{ newspaper.topic }}
+      <div class="d-flex justify-content-between align-items-center">
+        <span>Topic: {{ newspaper.topic }}</span>
+        {% if user.is_authenticated %}
+          {% if user not in newspaper.publishers.all %}
+            <form action="{% url 'newspaper-agency:add-or-remove-editor-to-authors' pk=newspaper.pk %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-success">Add me as author</button>
+            </form>
+          {% else %}
+            <form action="{% url 'newspaper-agency:add-or-remove-editor-to-authors' pk=newspaper.pk %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Delete me as author</button>
+            </form>
+          {% endif %}
+        {% else %}
+          <a href="{% url 'newspaper-agency:login' %}" class="btn btn-success">Login to add as author</a>
+        {% endif %}
+      </div>
     </div>
+
     <div class="card-body">
       <div class="row">
         <div class="col-md-3">
@@ -29,11 +48,17 @@
       </div>
     </div>
     <div class="card-footer text-muted">
-      <i>Posted by {{ newspaper.publishers.name }} {{ newspaper.published_date }}</i>
+      <i>Posted by
+        {% for publisher in newspaper.publishers.all %}
+          {{ publisher.username }},
+        {% endfor %}
+        {{ newspaper.published_date }}
+      </i>
     </div>
   </div>
   <br>
-  <a class="btn btn-secondary" href="{% url 'newspaper-agency:get-topic-info' pk=newspaper.topic.pk%}">Return back</a>
+  <a class="btn btn-secondary" href="{% url 'newspaper-agency:get-topic-info' pk=newspaper.topic.pk %}">Return back</a>
+
   {% if user.is_authenticated %}
     <div>
       <form action="{% url 'newspaper-agency:create-comment' newspaper.pk %}" method="post" novalidate>
@@ -48,7 +73,8 @@
     </div>
   {% else %}
 
-    <p><a href="{% url 'newspaper-agency:login' %}" class="btn btn-success" style="margin-top: 10px">Login to add comment</a></p>
+    <p><a href="{% url 'newspaper-agency:login' %}" class="btn btn-success" style="margin-top: 10px">Login to add
+      comment</a></p>
   {% endif %}
   <br>
   <p>
