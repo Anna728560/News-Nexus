@@ -88,7 +88,7 @@
     </strong>
   </p>
   {% for comment in newspaper.commentaries.all %}
-    <div class="card">
+    <div class="card" style="margin-top: 10px">
       <div class="card-body">
         <small class="text-muted"><strong>{{ comment.user.username }}</strong> {{ comment.created_time }}</small>
         <hr>
