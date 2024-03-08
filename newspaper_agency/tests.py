@@ -1,7 +1,5 @@
-from multiprocessing.connection import Client
-
 from django.contrib.auth import get_user_model, authenticate
-from django.test import TestCase
+from django.test import TestCase, Client
 from .models import Redactor, Topic, Newspaper, Commentary
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -87,16 +85,35 @@ class FormTest(TestCase):
         form = RedactorLoginForm(data=form_data)
         self.assertTrue(form.is_valid())
 
+    def test_redactor_login_form_invalid(self):
+        form_data = {
+            "username": "",
+            "password": "",
+        }
+        form = RedactorLoginForm(data=form_data)
+        self.assertFalse(form.is_valid())
 
 
-
-class HomePageViewTest(TestCase):
+class ViewTest(TestCase):
     def setUp(self):
         self.topic = Topic.objects.create(name="Test Topic")
         for i in range(10):
             Newspaper.objects.create(
                 title=f"Newspaper {i}", content=f"Content {i}", topic=self.topic
             )
+
+        self.newspaper = Newspaper.objects.create(
+            title="Test Newspaper", content="Test Content", topic=self.topic
+        )
+        self.user = get_user_model().objects.create_user(
+            username="testuser",
+            password="test123",
+        )
+        self.url = reverse("newspaper-agency:create-newspaper")
+        self.newspaper_data = {
+            "title": "Test Newspaper",
+            "content": "Test Content",
+        }
 
     def test_home_page_view(self):
         response = self.client.get(reverse("newspaper-agency:newspaper-home"))
@@ -106,14 +123,6 @@ class HomePageViewTest(TestCase):
         self.assertTrue("title" in response.context)
         self.assertTrue("search_form" in response.context)
         self.assertTrue("topics" in response.context)
-
-
-class NewspaperDetailViewTest(TestCase):
-    def setUp(self):
-        self.topic = Topic.objects.create(name="Test Topic")
-        self.newspaper = Newspaper.objects.create(
-            title="Test Newspaper", content="Test Content", topic=self.topic
-        )
 
     def test_newspaper_detail_view(self):
         response = self.client.get(
@@ -126,20 +135,56 @@ class NewspaperDetailViewTest(TestCase):
         self.assertTrue("newspaper" in response.context)
         self.assertEqual(response.context["newspaper"].title, "Test Newspaper")
 
-
-class CreateNewspaperViewTest(TestCase):
-    def setUp(self):
-        self.user = get_user_model().objects.create_user(
-            username="testuser",
-            password="test123",
-        )
-        self.url = reverse("newspaper-agency:create-newspaper")
-        self.newspaper_data = {
-            "title": "Test Newspaper",
-            "content": "Test Content",
-        }
-
     def test_create_newspaper_view(self):
         self.client.force_login(self.user)
         response = self.client.post(self.url, self.newspaper_data)
         self.assertEqual(response.status_code, 200)
+
+
+class UserRegisterViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.register_url = reverse('newspaper_agency:register')
+
+    def test_register_get(self):
+        response = self.client.get(self.register_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'newspaper_agency/register.html')
+        self.assertIsInstance(response.context['form'], RedactorCreationForm)
+
+    def test_register_post_invalid_form(self):
+        response = self.client.post(self.register_url, data={})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'newspaper_agency/register.html')
+        self.assertIsInstance(response.context['form'], RedactorCreationForm)
+
+
+class UserLoginViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.login_url = reverse('newspaper_agency:login')
+        self.user = Redactor.objects.create_user(username='test_user', password='password')
+
+    def test_login_get(self):
+        response = self.client.get(self.login_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'newspaper_agency/login.html')
+        self.assertIsInstance(response.context['form'], RedactorLoginForm)
+
+    def test_login_post_valid_credentials(self):
+        response = self.client.post(self.login_url, data={'username': 'test_user', 'password': 'password'})
+        self.assertRedirects(response, reverse('newspaper_agency:newspaper-home'))
+
+    def test_login_post_invalid_credentials(self):
+        response = self.client.post(self.login_url, data={'username': 'test_user', 'password': 'wrong_password'})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'newspaper_agency/login.html')
+        self.assertIn('form', response.context)
+        self.assertTrue(response.context['form'].errors)
+
+    def test_login_post_invalid_form(self):
+        response = self.client.post(self.login_url, data={})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'newspaper_agency/login.html')
+        self.assertIn('form', response.context)
+        self.assertTrue(response.context['form'].errors)
