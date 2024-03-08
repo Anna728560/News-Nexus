@@ -68,7 +68,9 @@ class CreateNewspaperView(LoginRequiredMixin, CreateView):
     template_name = "newspaper_agency/create_newspaper.html"
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        newspaper = form.save(commit=False)
+        newspaper.save()
+        newspaper.publishers.add(self.request.user)
         return super().form_valid(form)
 
     def get_success_url(self):
