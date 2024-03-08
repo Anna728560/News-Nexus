@@ -2,7 +2,7 @@ from multiprocessing.connection import Client
 
 from django.contrib.auth import get_user_model, authenticate
 from django.test import TestCase
-from .models import Redactor, Topic, Newspaper
+from .models import Redactor, Topic, Newspaper, Commentary
 from django.urls import reverse
 from django.contrib.auth.models import User
 from .forms import (
@@ -29,6 +29,11 @@ class ModelTest(TestCase):
             topic=self.topic,
         )
         self.newspaper.publishers.add(self.redactor)
+        self.commentary = Commentary.objects.create(
+            user=self.redactor,
+            newspaper=self.newspaper,
+            content="This is a test commentary."
+        )
 
     def test_topic_str(self):
         self.assertEqual(str(self.topic), "Test Topic")
@@ -39,31 +44,36 @@ class ModelTest(TestCase):
     def test_newspaper_str(self):
         self.assertEqual(str(self.newspaper), "Test Newspaper")
 
+    def test_comment_str(self):
+        self.assertEqual(str(self.commentary), "This is a test commentary.")
 
-class RedactorCreationFormTest(TestCase):
+
+class FormTest(TestCase):
+    def setUp(self):
+        self.valid_form = {
+            "username": "testuser",
+            "password1": "test12345",
+            "password2": "test12345",
+            "first_name": "Test",
+            "last_name": "User",
+            "years_of_experience": 5,
+        }
+        self.invalid_form = {
+            "username": "testuser",
+            "password1": "test12345",
+            "password2": "test12345",
+            "first_name": "Test",
+            "last_name": "User",
+            "years_of_experience": -5,
+        }
+
     def test_redactor_creation_form_valid(self):
-        form_data = {
-            "username": "testuser",
-            "password1": "test12345",
-            "password2": "test12345",
-            "first_name": "Test",
-            "last_name": "User",
-            "years_of_experience": 5,
-        }
-        form = RedactorCreationForm(data=form_data)
+        form = RedactorCreationForm(data=self.valid_form)
         self.assertTrue(form.is_valid())
 
-    def test_redactor_creation_valid_form(self):
-        form_data = {
-            "username": "testuser",
-            "password1": "test12345",
-            "password2": "test12345",
-            "first_name": "Test",
-            "last_name": "User",
-            "years_of_experience": 5,
-        }
-        form = RedactorCreationForm(data=form_data)
-        self.assertTrue(form.is_valid())
+    def test_redactor_creation_form_invalid(self):
+        form = RedactorCreationForm(data=self.invalid_form)
+        self.assertFalse(form.is_valid())
 
 
 class RedactorLoginFormTest(TestCase):
