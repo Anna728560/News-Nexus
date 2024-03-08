@@ -165,6 +165,8 @@ class UserLoginViewTest(TestCase):
         self.login_url = reverse('newspaper_agency:login')
         self.user = Redactor.objects.create_user(username='test_user', password='password')
 
+        self.logout_url = reverse('newspaper_agency:logout')
+
     def test_login_get(self):
         response = self.client.get(self.login_url)
         self.assertEqual(response.status_code, 200)
@@ -188,3 +190,17 @@ class UserLoginViewTest(TestCase):
         self.assertTemplateUsed(response, 'newspaper_agency/login.html')
         self.assertIn('form', response.context)
         self.assertTrue(response.context['form'].errors)
+
+
+class UserLogoutViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.logout_url = reverse('newspaper_agency:logout')
+        self.user = Redactor.objects.create_user(username='test_user', password='password')
+
+    def test_logout(self):
+        self.client.login(username='test_user', password='password')
+        self.assertTrue('_auth_user_id' in self.client.session)
+        response = self.client.get(self.logout_url)
+        self.assertRedirects(response, reverse('newspaper_agency:login'))
+        self.assertFalse('_auth_user_id' in self.client.session)
