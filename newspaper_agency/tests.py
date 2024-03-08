@@ -50,6 +50,10 @@ class ModelTest(TestCase):
 
 class FormTest(TestCase):
     def setUp(self):
+        self.redactor = Redactor.objects.create_user(
+            username='testuser',
+            password='testpassword'
+        )
         self.valid_form = {
             "username": "testuser",
             "password1": "test12345",
@@ -75,15 +79,15 @@ class FormTest(TestCase):
         form = RedactorCreationForm(data=self.invalid_form)
         self.assertFalse(form.is_valid())
 
-
-class RedactorLoginFormTest(TestCase):
-    def test_redactor_login_form_invalid(self):
+    def test_redactor_login_form_valid(self):
         form_data = {
-            "username": "",
-            "password": "",
+            "username": "testuser",
+            "password": "testpassword",
         }
         form = RedactorLoginForm(data=form_data)
-        self.assertFalse(form.is_valid())
+        self.assertTrue(form.is_valid())
+
+
 
 
 class HomePageViewTest(TestCase):
