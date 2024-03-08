@@ -121,6 +121,7 @@ class UserLogoutView(View):
 
 
 class CreateCommentView(LoginRequiredMixin, View):
+    """View class for the creation comment."""
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:
         if not request.user.is_authenticated:
             return redirect("newspaper-agency:login")
