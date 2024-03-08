@@ -1,13 +1,11 @@
-from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from .models import Redactor, Topic, Newspaper, Commentary
 from django.urls import reverse
-from django.contrib.auth.models import User
+
 from .forms import (
     RedactorCreationForm,
     RedactorLoginForm,
-    NewspaperForm,
-    TopicSearchForm,
 )
 
 
@@ -164,7 +162,6 @@ class UserLoginViewTest(TestCase):
         self.client = Client()
         self.login_url = reverse('newspaper_agency:login')
         self.user = Redactor.objects.create_user(username='test_user', password='password')
-
         self.logout_url = reverse('newspaper_agency:logout')
 
     def test_login_get(self):
