@@ -1,11 +1,3 @@
-{#<div class="list-group">#}
-{#  {% for topic in topics %}#}
-{#    <a href="{% url 'newspaper-agency:get-topic-info' pk=topic.pk %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">#}
-{#      {{ topic.name }}#}
-{#      <span class="badge bg-success rounded-pill">{{ topic.cnt }}</span>#}
-{#    </a>#}
-{#  {% endfor %}#}
-{#</div>#}
 <div class="list-group">
   {% for topic in topics %}
     <a href="{% url 'newspaper-agency:get-topic-info' pk=topic.pk %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
