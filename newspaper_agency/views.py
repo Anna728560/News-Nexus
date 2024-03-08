@@ -81,6 +81,7 @@ class CreateNewspaperView(LoginRequiredMixin, CreateView):
 
 class UserRegisterView(View):
     """View class for the page with registration."""
+
     def get(self, request):
         form = RedactorCreationForm()
         return render(request, "newspaper_agency/register.html", {"form": form})
@@ -97,6 +98,7 @@ class UserRegisterView(View):
 
 class UserLoginView(View):
     """View class for the page with login."""
+
     def get(self, request):
         form = RedactorLoginForm()
         return render(request, "newspaper_agency/login.html", {"form": form})
@@ -115,6 +117,7 @@ class UserLoginView(View):
 
 class UserLogoutView(View):
     """View class for the page with logout."""
+
     def get(self, request):
         logout(request)
         return redirect("newspaper-agency:login")
@@ -122,6 +125,7 @@ class UserLogoutView(View):
 
 class CreateCommentView(LoginRequiredMixin, View):
     """View class for the creation comment."""
+
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:
         if not request.user.is_authenticated:
             return redirect("newspaper-agency:login")

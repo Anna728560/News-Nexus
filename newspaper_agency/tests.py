@@ -28,7 +28,7 @@ class ModelTest(TestCase):
         self.commentary = Commentary.objects.create(
             user=self.redactor,
             newspaper=self.newspaper,
-            content="This is a test commentary."
+            content="This is a test commentary.",
         )
 
     def test_topic_str(self):
@@ -47,8 +47,7 @@ class ModelTest(TestCase):
 class FormTest(TestCase):
     def setUp(self):
         self.redactor = Redactor.objects.create_user(
-            username='testuser',
-            password='testpassword'
+            username="testuser", password="testpassword"
         )
         self.valid_form = {
             "username": "testuser",
@@ -142,62 +141,70 @@ class ViewTest(TestCase):
 class UserRegisterViewTest(TestCase):
     def setUp(self):
         self.client = Client()
-        self.register_url = reverse('newspaper_agency:register')
+        self.register_url = reverse("newspaper_agency:register")
 
     def test_register_get(self):
         response = self.client.get(self.register_url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'newspaper_agency/register.html')
-        self.assertIsInstance(response.context['form'], RedactorCreationForm)
+        self.assertTemplateUsed(response, "newspaper_agency/register.html")
+        self.assertIsInstance(response.context["form"], RedactorCreationForm)
 
     def test_register_post_invalid_form(self):
         response = self.client.post(self.register_url, data={})
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'newspaper_agency/register.html')
-        self.assertIsInstance(response.context['form'], RedactorCreationForm)
+        self.assertTemplateUsed(response, "newspaper_agency/register.html")
+        self.assertIsInstance(response.context["form"], RedactorCreationForm)
 
 
 class UserLoginViewTest(TestCase):
     def setUp(self):
         self.client = Client()
-        self.login_url = reverse('newspaper_agency:login')
-        self.user = Redactor.objects.create_user(username='test_user', password='password')
-        self.logout_url = reverse('newspaper_agency:logout')
+        self.login_url = reverse("newspaper_agency:login")
+        self.user = Redactor.objects.create_user(
+            username="test_user", password="password"
+        )
+        self.logout_url = reverse("newspaper_agency:logout")
 
     def test_login_get(self):
         response = self.client.get(self.login_url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'newspaper_agency/login.html')
-        self.assertIsInstance(response.context['form'], RedactorLoginForm)
+        self.assertTemplateUsed(response, "newspaper_agency/login.html")
+        self.assertIsInstance(response.context["form"], RedactorLoginForm)
 
     def test_login_post_valid_credentials(self):
-        response = self.client.post(self.login_url, data={'username': 'test_user', 'password': 'password'})
-        self.assertRedirects(response, reverse('newspaper_agency:newspaper-home'))
+        response = self.client.post(
+            self.login_url, data={"username": "test_user", "password": "password"}
+        )
+        self.assertRedirects(response, reverse("newspaper_agency:newspaper-home"))
 
     def test_login_post_invalid_credentials(self):
-        response = self.client.post(self.login_url, data={'username': 'test_user', 'password': 'wrong_password'})
+        response = self.client.post(
+            self.login_url, data={"username": "test_user", "password": "wrong_password"}
+        )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'newspaper_agency/login.html')
-        self.assertIn('form', response.context)
-        self.assertTrue(response.context['form'].errors)
+        self.assertTemplateUsed(response, "newspaper_agency/login.html")
+        self.assertIn("form", response.context)
+        self.assertTrue(response.context["form"].errors)
 
     def test_login_post_invalid_form(self):
         response = self.client.post(self.login_url, data={})
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'newspaper_agency/login.html')
-        self.assertIn('form', response.context)
-        self.assertTrue(response.context['form'].errors)
+        self.assertTemplateUsed(response, "newspaper_agency/login.html")
+        self.assertIn("form", response.context)
+        self.assertTrue(response.context["form"].errors)
 
 
 class UserLogoutViewTest(TestCase):
     def setUp(self):
         self.client = Client()
-        self.logout_url = reverse('newspaper_agency:logout')
-        self.user = Redactor.objects.create_user(username='test_user', password='password')
+        self.logout_url = reverse("newspaper_agency:logout")
+        self.user = Redactor.objects.create_user(
+            username="test_user", password="password"
+        )
 
     def test_logout(self):
-        self.client.login(username='test_user', password='password')
-        self.assertTrue('_auth_user_id' in self.client.session)
+        self.client.login(username="test_user", password="password")
+        self.assertTrue("_auth_user_id" in self.client.session)
         response = self.client.get(self.logout_url)
-        self.assertRedirects(response, reverse('newspaper_agency:login'))
-        self.assertFalse('_auth_user_id' in self.client.session)
+        self.assertRedirects(response, reverse("newspaper_agency:login"))
+        self.assertFalse("_auth_user_id" in self.client.session)
