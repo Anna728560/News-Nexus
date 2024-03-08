@@ -15,7 +15,7 @@ class Topic(models.Model):
 
 
 class Redactor(AbstractUser):
-    years_of_experience = models.IntegerField(default=0)
+    years_of_experience = models.PositiveIntegerField(default=0)
 
     class Meta:
         ordering = (
@@ -64,4 +64,4 @@ class Commentary(models.Model):
         verbose_name_plural = "Commentaries"
 
     def __str__(self):
-        return f"Comment: {self.content}"
+        return self.content

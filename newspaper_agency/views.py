@@ -80,6 +80,7 @@ class CreateNewspaperView(LoginRequiredMixin, CreateView):
 
 
 class UserRegisterView(View):
+    """View class for the page with registration."""
     def get(self, request):
         form = RedactorCreationForm()
         return render(request, "newspaper_agency/register.html", {"form": form})
@@ -95,6 +96,7 @@ class UserRegisterView(View):
 
 
 class UserLoginView(View):
+    """View class for the page with login."""
     def get(self, request):
         form = RedactorLoginForm()
         return render(request, "newspaper_agency/login.html", {"form": form})
@@ -112,6 +114,7 @@ class UserLoginView(View):
 
 
 class UserLogoutView(View):
+    """View class for the page with logout."""
     def get(self, request):
         logout(request)
         return redirect("newspaper-agency:login")
@@ -135,6 +138,7 @@ class CreateCommentView(LoginRequiredMixin, View):
 
 @login_required
 def add_of_remove_editor_to_authors(request, pk):
+    """Function that allows to add or remove redactors name to/from editors."""
     newspaper = get_object_or_404(Newspaper, pk=pk)
     if request.user in newspaper.publishers.all():
         newspaper.publishers.remove(request.user)
