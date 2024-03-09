@@ -27,9 +27,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-*5_!*0t^)vx_k-ur!c(-#$r_2ya-k3^^5j74d=s(i7=x@us=c%")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
+DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 # Application definition
 
@@ -148,10 +155,6 @@ AUTH_USER_MODEL = "newspaper_agency.Redactor"
 
 LOGIN_REDIRECT_URL = "/"
 
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
-
 LOGIN_URL = "login"
 
 LOGOUT_URL = "logout"
@@ -167,14 +170,3 @@ DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 MEDIA_ROOT = os.path.join(BASE_DIR / "media")
 
 MEDIA_URL = "/news_nexus/media/"
-
-
-# SECURE_HSTS_SECONDS = 31536000
-#
-# SECURE_SSL_REDIRECT = True
-#
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-#
-# ALLOWED_HOSTS = ['yourdomain.com', 'www.yourdomain.com']
-
