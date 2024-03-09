@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os.path
 from pathlib import Path
+import cloudinary_storage
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +43,8 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap4",
     "debug_toolbar",
+    "cloudinary",
+    "cloudinary_storage",
     "newspaper_agency",
 ]
 
@@ -144,10 +148,6 @@ AUTH_USER_MODEL = "newspaper_agency.Redactor"
 
 LOGIN_REDIRECT_URL = "/"
 
-MEDIA_ROOT = os.path.join(BASE_DIR / "media")
-
-MEDIA_URL = "/media/"
-
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
@@ -155,3 +155,15 @@ INTERNAL_IPS = [
 LOGIN_URL = "login"
 
 LOGOUT_URL = "logout"
+
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": "dfzrzg6jo",
+    "API_KEY": "644735984212461",
+    "API_SECRET": "5VwUhEjD48PNPjr3yZ_n66x8R5w"
+}
+
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+MEDIA_ROOT = os.path.join(BASE_DIR / "media")
+
+MEDIA_URL = "/news_nexus/media/"
