@@ -1,8 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
-from .models import Redactor, Topic, Newspaper, Commentary
 from django.urls import reverse
 
+from .models import (
+    Redactor,
+    Topic,
+    Newspaper,
+    Commentary
+)
 from .forms import (
     RedactorCreationForm,
     RedactorLoginForm,

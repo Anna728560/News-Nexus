@@ -2,8 +2,10 @@
   <label for="topic-filter"></label>
   <select name="topic" id="topic-filter" class="form-control">
     <option value="">All topics</option>
+
     {% for topic in topics %}
       <option value="{{ topic.pk }}">{{ topic.name }}</option>
     {% endfor %}
+
   </select>
 </div>

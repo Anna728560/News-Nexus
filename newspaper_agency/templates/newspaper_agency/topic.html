@@ -9,5 +9,9 @@
   <h2>The most recent newspapers for this topic:</h2>
   <br>
   {% include "newspaper_agency/newspaper_list.html" %}
-  <a class="btn btn-secondary" href="{% url 'newspaper-agency:newspaper-home' %}" style="margin-left: 30px">Return back</a>
+  <a class="btn btn-secondary"
+     href="{% url 'newspaper-agency:newspaper-home' %}"
+     style="margin-left: 30px">
+    Return back
+  </a>
 {% endblock %}

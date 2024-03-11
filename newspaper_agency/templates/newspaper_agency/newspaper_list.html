@@ -1,6 +1,7 @@
 {% load crispy_forms_tags %}
 {% if newspaper_list %}
   <ul>
+
     {% for newspaper in newspaper_list %}
       <div class="card mb-3">
         <div class="card-header">
@@ -10,12 +11,14 @@
 
           <div class="row">
             <div class="col-md-3">
+
               {% if newspaper.photo %}
                 <img src="{{ newspaper.photo.url }}" alt="" width="300" class="img-fluid float-md-start me-md-3 mb-3">
               {% else %}
                 <img src="https://www.theforage.com/blog/wp-content/uploads/2022/12/how-many-work-hours-in-a-year.jpg"
                      alt="" width="300" class="img-fluid float-md-start me-md-3 mb-3">
               {% endif %}
+
             </div>
 
             <div class="col-md-9" style="padding-left: 45px">
@@ -29,24 +32,29 @@
         </div>
         <div class="card-footer text-body-secondary">
           <i><strong>Posted by</strong>
+
             {% for publisher in newspaper.publishers.all %}
               {{ publisher.username }}{% if not forloop.last %}, {% endif %}
             {% endfor %}
+
             <strong>{{ newspaper.published_date }}</strong>
           </i>
           <p>
             <strong>
               {{ newspaper.commentaries.count }}
+
               {% if newspaper.commentaries.count == 1 %}
                 comment
               {% else %}
                 comments
               {% endif %}
+
             </strong>
           </p>
         </div>
       </div>
     {% endfor %}
+
   </ul>
 {% else %}
   <p>Oooops...it's empty</p>

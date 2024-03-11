@@ -13,7 +13,7 @@ from .forms import (
     CreateCommentaryForm,
     NewspaperForm,
 )
-from .models import Newspaper, Topic, Redactor
+from .models import Newspaper, Topic
 
 
 class HomePageView(ListView):
@@ -137,8 +137,7 @@ class CreateCommentView(LoginRequiredMixin, View):
             comment.newspaper = newspaper
             comment.save()
             return redirect("newspaper-agency:newspaper-detail", pk=pk)
-        else:
-            return redirect("newspaper-agency:newspaper-detail", pk=pk)
+        return redirect("newspaper-agency:newspaper-detail", pk=pk)
 
 
 @login_required
