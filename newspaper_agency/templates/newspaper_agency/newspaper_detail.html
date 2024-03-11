@@ -13,7 +13,9 @@
     <div class="card-header">
       <div class="d-flex justify-content-between align-items-center">
         <span>Topic: {{ newspaper.topic }}</span>
+
         {% if user.is_authenticated %}
+
           {% if user not in newspaper.publishers.all %}
             <form action="{% url 'newspaper-agency:add-or-remove-editor-to-authors' pk=newspaper.pk %}" method="post">
               {% csrf_token %}
@@ -25,21 +27,25 @@
               <button type="submit" class="btn btn-danger">Delete me as author</button>
             </form>
           {% endif %}
+
         {% else %}
           <a href="{% url 'newspaper-agency:login' %}" class="btn btn-success">Login to add as author</a>
         {% endif %}
+
       </div>
     </div>
 
     <div class="card-body">
       <div class="row">
         <div class="col-md-3">
+
           {% if newspaper.photo %}
             <img src="{{ newspaper.photo.url }}" alt="" width="300" class="img-fluid float-md-start me-md-3 mb-3">
           {% else %}
             <img src="https://www.theforage.com/blog/wp-content/uploads/2022/12/how-many-work-hours-in-a-year.jpg"
                  alt="" width="300" class="img-fluid float-md-start me-md-3 mb-3">
           {% endif %}
+
         </div>
         <div class="col-md-9" style="padding-left: 45px">
           <h5>{{ newspaper.title }}</h5>
@@ -49,9 +55,11 @@
     </div>
     <div class="card-footer text-muted">
       <i><strong>Posted by</strong>
+
         {% for publisher in newspaper.publishers.all %}
           {{ publisher.username }},
         {% endfor %}
+
         <strong>{{ newspaper.published_date }}</strong>
       </i>
     </div>
@@ -80,13 +88,16 @@
   <p>
     <strong>
       {{ newspaper.commentaries.count }}
+
       {% if newspaper.commentaries.count == 1 %}
         comment
       {% else %}
         comments
       {% endif %}
+
     </strong>
   </p>
+
   {% for comment in newspaper.commentaries.all %}
     <div class="card" style="margin-top: 10px">
       <div class="card-body">

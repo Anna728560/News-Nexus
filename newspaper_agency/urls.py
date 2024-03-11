@@ -24,7 +24,7 @@ urlpatterns = [
         CreateNewspaperView.as_view(),
         name="create-newspaper",
     ),
-    path("<int:pk>/create-comment", CreateCommentView.as_view(), name="create-comment"),
+    path("newspaper/<int:pk>/create-comment", CreateCommentView.as_view(), name="create-comment"),
     path(
         "add-editor-to-authors/<int:pk>/",
         add_of_remove_editor_to_authors,
