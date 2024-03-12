@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os.path
 from pathlib import Path
 import cloudinary_storage
-
+from django.core.exceptions import ImproperlyConfigured
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-*5_!*0t^)vx_k-ur!c(-#$r_2ya-k3^^5j74d=s(i7=x@us=c%")
+# SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-*5_!*0t^)vx_k-ur!c(-#$r_2ya-k3^^5j74d=s(i7=x@us=c%")
+load_dotenv()
+
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+
+if not SECRET_KEY:
+    raise ImproperlyConfigured("SECRET_KEY environment variable is not set!")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
