@@ -17,14 +17,14 @@ urlpatterns = [
     path("login/", UserLoginView.as_view(), name="login"),
     path("logout/", UserLogoutView.as_view(), name="logout"),
     path("", HomePageView.as_view(), name="newspaper-home"),
-    path("topic/<int:pk>/", GetNewspapersByTopic.as_view(), name="get-topic-info"),
-    path("newspaper/<int:pk>/", NewspaperDetailView.as_view(), name="newspaper-detail"),
+    path("topics/<int:pk>/", GetNewspapersByTopic.as_view(), name="get-topic-info"),
+    path("newspapers/<int:pk>/", NewspaperDetailView.as_view(), name="newspaper-detail"),
     path(
-        "newspaper/create-newspaper/",
+        "newspapers/create-newspaper/",
         CreateNewspaperView.as_view(),
         name="create-newspaper",
     ),
-    path("newspaper/<int:pk>/create-comment", CreateCommentView.as_view(), name="create-comment"),
+    path("newspapers/<int:pk>/create-comment", CreateCommentView.as_view(), name="create-comment"),
     path(
         "add-editor-to-authors/<int:pk>/",
         add_of_remove_editor_to_authors,
