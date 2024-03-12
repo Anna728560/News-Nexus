@@ -1,346 +1,526 @@
 [
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 1,
     "fields": {
       "name": "Technology"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 2,
     "fields": {
       "name": "Software Development"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 3,
     "fields": {
       "name": "Artificial Intelligence"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 4,
     "fields": {
       "name": "Data Science"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 5,
     "fields": {
       "name": "Cybersecurity"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 6,
     "fields": {
       "name": "Cloud Computing"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 7,
     "fields": {
       "name": "Internet of Things (IoT)"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 8,
     "fields": {
       "name": "Blockchain"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 9,
     "fields": {
       "name": "Mobile Applications"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 10,
     "fields": {
       "name": "Web Development"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 11,
     "fields": {
       "name": "Machine Learning"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 12,
     "fields": {
       "name": "Augmented Reality (AR)"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 13,
     "fields": {
       "name": "Virtual Reality (VR)"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 14,
     "fields": {
       "name": "Quantum Computing"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 15,
     "fields": {
       "name": "Robotics"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 16,
     "fields": {
       "name": "Big Data"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 17,
     "fields": {
       "name": "Cryptocurrency"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 18,
     "fields": {
       "name": "Bioinformatics"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 19,
     "fields": {
       "name": "Network Security"
     }
   },
   {
-    "model": "news_nexus.topic",
+    "model": "newspaper_agency.topic",
     "pk": 20,
     "fields": {
       "name": "Game Development"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 1,
     "fields": {
       "username": "tom_readme",
       "first_name": "John",
       "last_name": "Doe",
-      "years_of_experience": 5
+      "years_of_experience": 5,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 2,
     "fields": {
       "username": "mike_white",
       "first_name": "Jane",
       "last_name": "Smith",
-      "years_of_experience": 8
+      "years_of_experience": 8,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 3,
     "fields": {
       "username": "sky_walker",
       "first_name": "Michael",
       "last_name": "Johnson",
-      "years_of_experience": 4
+      "years_of_experience": 4,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 4,
     "fields": {
       "username": "blue_lion",
       "first_name": "Emily",
       "last_name": "Brown",
-      "years_of_experience": 6
+      "years_of_experience": 6,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 5,
     "fields": {
       "username": "green_tiger",
       "first_name": "William",
       "last_name": "Taylor",
-      "years_of_experience": 7
+      "years_of_experience": 7,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 6,
     "fields": {
       "username": "purple_elephant",
       "first_name": "Olivia",
       "last_name": "Anderson",
-      "years_of_experience": 3
+      "years_of_experience": 3,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 7,
     "fields": {
       "username": "yellow_snake",
       "first_name": "James",
       "last_name": "Martinez",
-      "years_of_experience": 9
+      "years_of_experience": 9,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 8,
     "fields": {
       "username": "red_panda",
       "first_name": "Emma",
       "last_name": "Garcia",
-      "years_of_experience": 5
+      "years_of_experience": 5,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 9,
     "fields": {
       "username": "orange_cat",
       "first_name": "Daniel",
       "last_name": "Rodriguez",
-      "years_of_experience": 4
+      "years_of_experience": 4,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 10,
     "fields": {
       "username": "pink_dolphin",
       "first_name": "Ava",
       "last_name": "Hernandez",
-      "years_of_experience": 6
+      "years_of_experience": 6,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 11,
     "fields": {
       "username": "white_fox",
       "first_name": "Alexander",
       "last_name": "Lopez",
-      "years_of_experience": 7
+      "years_of_experience": 7,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 12,
     "fields": {
       "username": "black_bear",
       "first_name": "Mia",
       "last_name": "Gonzalez",
-      "years_of_experience": 4
+      "years_of_experience": 4,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 13,
     "fields": {
       "username": "brown_beaver",
       "first_name": "Ethan",
       "last_name": "Wilson",
-      "years_of_experience": 8
+      "years_of_experience": 8,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 14,
     "fields": {
       "username": "gray_wolf",
       "first_name": "Sophia",
       "last_name": "Perez",
-      "years_of_experience": 6
+      "years_of_experience": 6,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 15,
     "fields": {
       "username": "black_panther",
       "first_name": "Matthew",
       "last_name": "Torres",
-      "years_of_experience": 5
+      "years_of_experience": 5,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 16,
     "fields": {
       "username": "red_robin",
       "first_name": "Isabella",
       "last_name": "Nguyen",
-      "years_of_experience": 9
+      "years_of_experience": 9,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 17,
     "fields": {
       "username": "blue_whale",
       "first_name": "Jacob",
       "last_name": "Smith",
-      "years_of_experience": 3
+      "years_of_experience": 3,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 18,
     "fields": {
       "username": "green_gorilla",
       "first_name": "Charlotte",
       "last_name": "Kim",
-      "years_of_experience": 7
+      "years_of_experience": 7,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 19,
     "fields": {
       "username": "yellow_monkey",
       "first_name": "Daniel",
       "last_name": "Martinez",
-      "years_of_experience": 6
+      "years_of_experience": 6,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.redactor",
+    "model": "newspaper_agency.redactor",
     "pk": 20,
     "fields": {
       "username": "pink_rabbit",
       "first_name": "Amelia",
       "last_name": "Jones",
-      "years_of_experience": 5
+      "years_of_experience": 5,
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": [],
+      "email": "redactor.top@news.com"
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 1,
     "fields": {
       "title": "Technology Trends in 2024",
@@ -353,7 +533,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 2,
     "fields": {
       "title": "The Evolution of Software Development",
@@ -366,7 +546,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 3,
     "fields": {
       "title": "The Future of Artificial Intelligence",
@@ -379,7 +559,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 4,
     "fields": {
       "title": "Unleashing the Power of Data Science",
@@ -392,7 +572,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 5,
     "fields": {
       "title": "Securing the Future: Cybersecurity Trends",
@@ -405,7 +585,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 6,
     "fields": {
       "title": "Navigating the Cloud: Trends and Innovations",
@@ -418,7 +598,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 7,
     "fields": {
       "title": "The Internet of Things (IoT) Revolution",
@@ -431,7 +611,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 8,
     "fields": {
       "title": "Unlocking the Potential of Blockchain Technology",
@@ -444,7 +624,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 9,
     "fields": {
       "title": "The Future of Mobile Applications",
@@ -457,7 +637,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 10,
     "fields": {
       "title": "The Future of Web Development",
@@ -470,7 +650,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 11,
     "fields": {
       "title": "Machine Learning: The Future of AI",
@@ -483,7 +663,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 12,
     "fields": {
       "title": "Augmented Reality: The Next Frontier",
@@ -496,7 +676,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 13,
     "fields": {
       "title": "Virtual Reality: Exploring New Realms",
@@ -509,7 +689,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 14,
     "fields": {
       "title": "The Promise of Quantum Computing",
@@ -522,7 +702,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 15,
     "fields": {
       "title": "The Rise of Robotics",
@@ -535,7 +715,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 16,
     "fields": {
       "title": "Harnessing the Power of Big Data",
@@ -548,7 +728,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 17,
     "fields": {
       "title": "Demystifying Cryptocurrency",
@@ -561,7 +741,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 18,
     "fields": {
       "title": "Exploring the Frontier of Bioinformatics",
@@ -574,7 +754,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 19,
     "fields": {
       "title": "Ensuring Network Security in a Digital World",
@@ -587,7 +767,7 @@
     }
   },
   {
-    "model": "news_nexus.newspaper",
+    "model": "newspaper_agency.newspaper",
     "pk": 20,
     "fields": {
       "title": "The Art and Science of Game Development",
