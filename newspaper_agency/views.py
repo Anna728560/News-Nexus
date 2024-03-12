@@ -36,6 +36,7 @@ class HomePageView(ListView):
         if topic_id:
             topic = get_object_or_404(Topic, pk=topic_id)
             queryset = queryset.filter(topic=topic)
+
         return queryset.select_related("topic")
 
 
@@ -92,8 +93,8 @@ class UserRegisterView(View):
             user = form.save()
             login(request, user)
             return redirect("newspaper_agency:login")
-        else:
-            return render(request, "newspaper_agency/register.html", {"form": form})
+
+        return render(request, "newspaper_agency/register.html", {"form": form})
 
 
 class UserLoginView(View):
@@ -112,6 +113,7 @@ class UserLoginView(View):
             if user is not None:
                 login(request, user)
                 return redirect("newspaper-agency:newspaper-home")
+
         return render(request, "newspaper_agency/login.html", {"form": form})
 
 
@@ -137,6 +139,7 @@ class CreateCommentView(LoginRequiredMixin, View):
             comment.newspaper = newspaper
             comment.save()
             return redirect("newspaper-agency:newspaper-detail", pk=pk)
+
         return redirect("newspaper-agency:newspaper-detail", pk=pk)
 
 
