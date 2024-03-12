@@ -39,6 +39,7 @@ DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
+    "localhost",
     "news-nexus.onrender.com",
 ]
 
@@ -111,7 +112,7 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=500)
+db_from_env = dj_database_url.config(conn_max_age=400)
 DATABASES["default"].update(db_from_env)
 
 
