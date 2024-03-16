@@ -49,7 +49,6 @@ class Newspaper(models.Model):
 
 
 class Commentary(models.Model):
-    id = models.AutoField(primary_key=True)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="commentaries"
     )
