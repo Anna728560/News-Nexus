@@ -154,9 +154,9 @@ def add_of_remove_editor_to_authors(request, pk):
 
 
 @login_required
-def add_of_remove_newspaper(request, pk):
+def remove_newspaper(request, pk):
     """Function that allows to remove newspaper if redactor is in editors."""
     newspaper = get_object_or_404(Newspaper, pk=pk)
-    # if request.user in newspaper.publishers.all():
-    newspaper.objects.remove(pk=newspaper.pk)
+    if request.user in newspaper.publishers.all():
+        newspaper.delete()
     return redirect("newspaper-agency:newspaper-home")
