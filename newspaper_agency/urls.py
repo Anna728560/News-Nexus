@@ -10,7 +10,7 @@ from .views import (
     UserLogoutView,
     CreateCommentView,
     add_of_remove_editor_to_authors,
-    remove_newspaper,
+    add_of_remove_newspaper,
 )
 
 urlpatterns = [
@@ -33,7 +33,7 @@ urlpatterns = [
     ),
     path(
         "remove-newspapers/<int:pk>/",
-        remove_newspaper,
+        add_of_remove_newspaper,
         name="add-or-remove-newspaper",
     ),
 ]
