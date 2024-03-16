@@ -9,7 +9,7 @@ from django.views.generic import ListView, DetailView, CreateView, View
 from .forms import (
     RedactorCreationForm,
     RedactorLoginForm,
-    TopicSearchForm,
+    NewspaperSearchForm,
     CreateCommentaryForm,
     NewspaperForm,
 )
@@ -22,21 +22,21 @@ class HomePageView(ListView):
     model = Newspaper
     template_name = "newspaper_agency/newspaper_home.html"
     paginate_by = 10
+    queryset = Newspaper.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Home page"
-        context["search_form"] = TopicSearchForm()
+        context["search_form"] = NewspaperSearchForm()
         context["topics"] = Topic.objects.all()
         return context
 
     def get_queryset(self):
-        queryset = super().get_queryset().select_related("topic")
-        topic_id = self.request.GET.get("topic")
-        if topic_id:
-            queryset = queryset.filter(topic_id=topic_id)
+        title = self.request.GET.get("title")
+        if title:
+            return self.model.objects.filter(title__icontains=title)
 
-        return queryset
+        return self.queryset
 
 
 class GetNewspapersByTopic(ListView):
