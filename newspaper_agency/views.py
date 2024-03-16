@@ -1,6 +1,7 @@
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import IntegrityError
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -133,11 +134,19 @@ class CreateCommentView(LoginRequiredMixin, View):
         newspaper = get_object_or_404(Newspaper.objects.prefetch_related("publishers"), pk=pk)
         form = CreateCommentaryForm(request.POST)
         if form.is_valid():
-            comment = form.save(commit=False)
-            comment.user = request.user
-            comment.newspaper = newspaper
-            comment.save()
-            return redirect("newspaper-agency:newspaper-detail", pk=pk)
+            try:
+                comment = form.save(commit=False)
+                comment.user = request.user
+                comment.newspaper = newspaper
+                comment.save()
+                return redirect("newspaper-agency:newspaper-detail", pk=pk)
+            except IntegrityError:
+                comment = form.save(commit=False)
+                comment.user = request.user
+                comment.newspaper = newspaper
+                comment.id = None
+                comment.save()
+                return redirect("newspaper-agency:newspaper-detail", pk=pk)
 
         return redirect("newspaper-agency:newspaper-detail", pk=pk)
 
