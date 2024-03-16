@@ -35,8 +35,7 @@ if not SECRET_KEY:
     raise ImproperlyConfigured("SECRET_KEY environment variable is not set!")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = "RENDER" not in os.environ
-DEBUG = True
+DEBUG = "RENDER" not in os.environ
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
