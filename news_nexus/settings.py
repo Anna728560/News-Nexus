@@ -35,12 +35,12 @@ if not SECRET_KEY:
     raise ImproperlyConfigured("SECRET_KEY environment variable is not set!")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
+DEBUG = "RENDER" not in os.environ
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    "news-nexus.onrender.com",
+    "newsnexus-w08l.onrender.com",
 ]
 
 INTERNAL_IPS = [
