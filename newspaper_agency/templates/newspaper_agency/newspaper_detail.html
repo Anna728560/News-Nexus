@@ -54,15 +54,30 @@
       </div>
     </div>
     <div class="card-footer text-muted">
-      <i><strong>Posted by</strong>
+      <div class="d-flex justify-content-between align-items-center">
+        <i><strong>Posted by</strong>
 
-        {% for publisher in newspaper.publishers.all %}
-          {{ publisher.username }},
-        {% endfor %}
+          {% for publisher in newspaper.publishers.all %}
+            {{ publisher.username }},
+          {% endfor %}
 
-        <strong>{{ newspaper.published_date }}</strong>
-      </i>
+          <strong>{{ newspaper.published_date }}</strong>
+        </i>
+
+        {% if user.is_authenticated %}
+
+          {% if user in newspaper.publishers.all %}
+            <form action="{% url 'newspaper-agency:add-or-remove-newspaper' pk=newspaper.pk %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-outline-danger">Delete this post</button>
+            </form>
+            {% endif %}
+
+        {% endif %}
+
+      </div>
     </div>
+
   </div>
   <br>
   <a class="btn btn-secondary" href="{% url 'newspaper-agency:get-topic-info' pk=newspaper.topic.pk %}">Return back</a>
