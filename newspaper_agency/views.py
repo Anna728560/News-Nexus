@@ -31,12 +31,13 @@ class HomePageView(ListView):
         return context
 
     def get_queryset(self):
-        queryset = super().get_queryset().select_related("topic")
+        queryset = super().get_queryset()
         topic_id = self.request.GET.get("topic")
         if topic_id:
-            queryset = queryset.filter(topic_id=topic_id)
+            topic = get_object_or_404(Topic, pk=topic_id)
+            queryset = queryset.filter(topic=topic)
 
-        return queryset
+        return queryset.select_related("topic")
 
 
 class GetNewspapersByTopic(ListView):
@@ -130,7 +131,7 @@ class CreateCommentView(LoginRequiredMixin, View):
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:
         if not request.user.is_authenticated:
             return redirect("newspaper-agency:login")
-        newspaper = get_object_or_404(Newspaper.objects.prefetch_related("publishers"), pk=pk)
+        newspaper = get_object_or_404(Newspaper, pk=pk)
         form = CreateCommentaryForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
@@ -151,12 +152,3 @@ def add_of_remove_editor_to_authors(request, pk):
     else:
         newspaper.publishers.add(request.user)
     return redirect("newspaper-agency:newspaper-detail", pk=newspaper.pk)
-
-
-@login_required
-def add_of_remove_newspaper(request, pk):
-    """Function that allows to remove newspaper if redactor is in editors."""
-    newspaper = get_object_or_404(Newspaper, pk=pk)
-    # if request.user in newspaper.publishers.all():
-    newspaper.objects.remove(pk=newspaper.pk)
-    return redirect("newspaper-agency:newspaper-home")
