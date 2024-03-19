@@ -57,9 +57,13 @@
       <div class="d-flex justify-content-between align-items-center">
         <i><strong>Posted by</strong>
 
-          {% for publisher in newspaper.publishers.all %}
-            {{ publisher.username }},
-          {% endfor %}
+          {% if newspaper.publishers.all %}
+            {% for publisher in newspaper.publishers.all %}
+              {{ publisher.username }},
+            {% endfor %}
+          {% else %}
+              Anonymous
+          {% endif %}
 
           <strong>{{ newspaper.published_date }}</strong>
         </i>

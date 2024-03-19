@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -65,6 +66,12 @@ class CreateNewspaperView(LoginRequiredMixin, CreateView):
 
     model = Newspaper
     form_class = NewspaperForm
+
+    def form_valid(self, form):
+        newspaper = form.save(commit=False)
+        newspaper.save()
+        newspaper.publishers.add(self.request.user)
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy(
