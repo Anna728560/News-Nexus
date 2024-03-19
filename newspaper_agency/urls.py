@@ -5,6 +5,7 @@ from .views import (
     GetNewspapersByTopic,
     NewspaperDetailView,
     CreateNewspaperView,
+    UpdateNewspaperView,
     UserRegisterView,
     UserLoginView,
     UserLogoutView,
@@ -24,6 +25,11 @@ urlpatterns = [
         "newspapers/create-newspaper/",
         CreateNewspaperView.as_view(),
         name="create-newspaper",
+    ),
+    path(
+        "newspapers/<int:pk>/update-newspaper/",
+        UpdateNewspaperView.as_view(),
+        name="update-newspaper",
     ),
     path("newspapers/<int:pk>/create-comment", CreateCommentView.as_view(), name="create-comment"),
     path(

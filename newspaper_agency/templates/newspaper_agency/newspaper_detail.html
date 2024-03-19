@@ -65,14 +65,19 @@
         </i>
 
         {% if user.is_authenticated %}
-
           {% if user in newspaper.publishers.all %}
-            <form action="{% url 'newspaper-agency:add-or-remove-newspaper' pk=newspaper.pk %}" method="post">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-outline-danger">Delete this post</button>
-            </form>
-            {% endif %}
-
+            <div class="float-right">
+              <form action="{% url 'newspaper-agency:add-or-remove-newspaper' pk=newspaper.pk %}" method="post"
+                    style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-danger">Delete this post</button>
+              </form>
+              <form action="{% url 'newspaper-agency:update-newspaper' pk=newspaper.pk %}" method="get" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-success">Make changes</button>
+              </form>
+            </div>
+          {% endif %}
         {% endif %}
 
       </div>

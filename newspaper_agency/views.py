@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, View
+from django.views.generic import ListView, DetailView, CreateView, View, UpdateView
 
 from .forms import (
     RedactorCreationForm,
@@ -65,13 +65,17 @@ class CreateNewspaperView(LoginRequiredMixin, CreateView):
 
     model = Newspaper
     form_class = NewspaperForm
-    template_name = "newspaper_agency/create_newspaper.html"
 
-    def form_valid(self, form):
-        newspaper = form.save(commit=False)
-        newspaper.save()
-        newspaper.publishers.add(self.request.user)
-        return super().form_valid(form)
+    def get_success_url(self):
+        return reverse_lazy(
+            "newspaper-agency:newspaper-detail", kwargs={"pk": self.object.pk}
+        )
+
+
+class UpdateNewspaperView(LoginRequiredMixin, UpdateView):
+    """View class for the page with update form for the newspaper."""
+    model = Newspaper
+    form_class = NewspaperForm
 
     def get_success_url(self):
         return reverse_lazy(
