@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}
+  Add a newspaper
+{% endblock %}
+
+{% block sidebar %}
+  {% include "includes/sidebar.html" %}
+{% endblock %}
+
+{% block content %}
+  <h1>Add a newspaper</h1>
+  <br>
+    <form action="{% url 'newspaper-agency:create-newspaper' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {{ form|crispy }}
+      <br>
+      <button type="submit" class="btn btn-success btn-block">Add newspaper</button>
+      <a class="btn btn-secondary btn-block mt-3" href="{% url 'newspaper-agency:newspaper-home' %}">Cancel</a>
+    </form>
+{% endblock %}

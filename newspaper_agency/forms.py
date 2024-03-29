@@ -43,6 +43,7 @@ class NewspaperForm(forms.ModelForm):
         }
 
 
+
 class NewspaperSearchForm(forms.Form):
     title = forms.CharField(
         max_length=255,

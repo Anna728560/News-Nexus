@@ -141,7 +141,9 @@ class CreateCommentView(LoginRequiredMixin, View):
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:
         if not request.user.is_authenticated:
             return redirect("newspaper-agency:login")
+
         newspaper = get_object_or_404(Newspaper.objects.prefetch_related("publishers"), pk=pk)
+
         form = CreateCommentaryForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
