@@ -54,7 +54,7 @@
       </div>
     </div>
     <div class="card-footer text-muted">
-<<<<<<< HEAD
+
       <div class="d-flex justify-content-between align-items-center">
         <i><strong>Posted by</strong>
 
@@ -88,17 +88,6 @@
       </div>
     </div>
 
-=======
-      <i><strong>Posted by</strong>
-
-        {% for publisher in newspaper.publishers.all %}
-          {{ publisher.username }},
-        {% endfor %}
-
-        <strong>{{ newspaper.published_date }}</strong>
-      </i>
-    </div>
->>>>>>> 26f8c5535070e9d0990dceaa4428fd826b29e6d7
   </div>
   <br>
   <a class="btn btn-secondary" href="{% url 'newspaper-agency:get-topic-info' pk=newspaper.topic.pk %}">Return back</a>

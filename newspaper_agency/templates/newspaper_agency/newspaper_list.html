@@ -33,7 +33,6 @@
         <div class="card-footer text-body-secondary">
           <i><strong>Posted by</strong>
 
-<<<<<<< HEAD
             {% if newspaper.publishers.all %}
               {% for publisher in newspaper.publishers.all %}
                 {{ publisher.username }}{% if not forloop.last %}, {% endif %}
@@ -41,11 +40,6 @@
             {% else %}
               Anonymous
             {% endif %}
-=======
-            {% for publisher in newspaper.publishers.all %}
-              {{ publisher.username }}{% if not forloop.last %}, {% endif %}
-            {% endfor %}
->>>>>>> 26f8c5535070e9d0990dceaa4428fd826b29e6d7
 
             <strong>{{ newspaper.published_date }}</strong>
           </i>
