@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -30,6 +29,7 @@ class HomePageView(ListView):
         context["title"] = "Home page"
         context["search_form"] = NewspaperSearchForm()
         context["topics"] = Topic.objects.all()
+
         return context
 
     def get_queryset(self):
@@ -141,7 +141,9 @@ class CreateCommentView(LoginRequiredMixin, View):
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:
         if not request.user.is_authenticated:
             return redirect("newspaper-agency:login")
+
         newspaper = get_object_or_404(Newspaper.objects.prefetch_related("publishers"), pk=pk)
+
         form = CreateCommentaryForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
